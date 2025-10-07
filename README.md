@@ -78,6 +78,7 @@ For a more flexible IAM policy, you can use a wildcard (`*`) to grant permission
 
 ```
 
+
 ## ✅ Summary Table
 
 | Component            | Purpose                                              |
