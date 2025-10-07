@@ -40,3 +40,38 @@ Below is an example IAM policy that gives **read-only access to one specific sec
   ]
 }
 
+```
+
+#AWS Secrets Manager ARN for prod/cart-service/credentials
+## 3. Using the secret name prod/cart-service/credentials, derive a sensible ARN as the specific resource for access.
+
+## Derived Sensible ARN
+
+The Amazon Resource Name (ARN) for the secret `prod/cart-service/credentials` can be derived using the standard AWS Secrets Manager format. Because the exact AWS region and account ID are required for a complete ARN, they are included as placeholders.
+
+---
+
+## Breakdown of the ARN
+
+*   **`arn:aws:secretsmanager`**: The standard prefix for AWS Secrets Manager resources.
+*   **`<Region>`**: The specific AWS region where the secret is stored (e.g., `us-east-1`).
+*   **`<AccountId>`**: The 12-digit AWS account ID.
+*   **`secret:`**: The resource type within the Secrets Manager service.
+*   **`prod/cart-service/credentials`**: The user-defined name of the secret.
+*   **`-??????`**: The six random characters automatically appended by Secrets Manager to make the ARN unique.
+
+## How to use this ARN in an IAM policy
+
+For a more flexible IAM policy, you can use a wildcard (`*`) to grant permissions to secrets under a specific path, such as `prod/cart-service`. This is useful for future-proofing your policy without needing to update it for every new secret created in that path.
+
+### Example IAM policy statement
+
+```json
+{
+  "Effect": "Allow",
+  "Action": [
+    "secretsmanager:GetSecretValue",
+    "secretsmanager:DescribeSecret"
+  ],
+  "Resource": "arn:aws:secretsmanager:us-east-1:123456789012:secret:prod/cart-service/*"
+}
