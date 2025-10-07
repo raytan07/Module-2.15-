@@ -42,7 +42,7 @@ Below is an example IAM policy that gives **read-only access to one specific sec
 
 ```
 
-#AWS Secrets Manager ARN for prod/cart-service/credentials
+## AWS Secrets Manager ARN for prod/cart-service/credentials
 ## 3. Using the secret name prod/cart-service/credentials, derive a sensible ARN as the specific resource for access.
 
 ## Derived Sensible ARN
@@ -75,3 +75,12 @@ For a more flexible IAM policy, you can use a wildcard (`*`) to grant permission
   ],
   "Resource": "arn:aws:secretsmanager:us-east-1:123456789012:secret:prod/cart-service/*"
 }
+
+```
+| Component            | Purpose                                              |
+| -------------------- | ---------------------------------------------------- |
+| IAM Role             | Grants permissions to EC2 without static credentials |
+| IAM Policy           | Specifies allowed actions and resources              |
+| Secret ARN           | Identifies the exact secret in Secrets Manager       |
+| EC2 Instance Profile | Associates the role with the running EC2 instance    |
+| Permissions Needed   | `GetSecretValue`, `DescribeSecret`                   |
