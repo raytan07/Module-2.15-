@@ -77,6 +77,9 @@ For a more flexible IAM policy, you can use a wildcard (`*`) to grant permission
 }
 
 ```
+
+## ✅ Summary Table
+
 | Component            | Purpose                                              |
 | -------------------- | ---------------------------------------------------- |
 | IAM Role             | Grants permissions to EC2 without static credentials |
